@@ -1,70 +1,139 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ejercicio5ASPDOTNET.SiteMaster" %>
 
 <!DOCTYPE html>
-
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
     <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.min.css">
+    
+    <!-- Estilos generales -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- Icono -->
+    <link rel="icon" href="~/Content/images/fevicon.png" type="image/gif" />
 
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/Content/css/jquery.mCustomScrollbar.min.css">
+
+    <!-- FontAwesome y Google Fonts -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
+
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <!-- Header -->
+        <div class="header_section">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Nombre de la aplicación</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
+                <div class="logo"><a href="~/"><img src="~/Content/Images/logo.png"></a></div>
+                <div class="menu_main">
+                    <ul>
+                        <li><a href="~/Default.aspx">Home</a></li>
+                        <li><a href="~/About.aspx">About</a></li>
+                        <li><a href="~/Services.aspx">Services</a></li>
+                        <li><a href="~/Blog.aspx">Blog</a></li>
+                        <li><a href="~/Contact.aspx">Contact</a></li>
                     </ul>
                 </div>
             </div>
-        </nav>
-        <div class="container body-content">
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <!-- Banner con carrusel -->
+            <div class="banner_section layout_padding">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="container">
+                                <h1 class="banner_taital">Adventure</h1>
+                                <p class="banner_text">Explora el mundo con experiencias únicas.</p>
+                                <div class="read_bt"><a href="#">Get A Quote</a></div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container">
+                                <h1 class="banner_taital">Travel</h1>
+                                <p class="banner_text">Descubre nuevos destinos y vive aventuras inolvidables.</p>
+                                <div class="read_bt"><a href="#">Get A Quote</a></div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container">
+                                <h1 class="banner_taital">Experience</h1>
+                                <p class="banner_text">Disfruta de la mejor calidad y servicio en tus viajes.</p>
+                                <div class="read_bt"><a href="#">Get A Quote</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </asp:ContentPlaceHolder>
+
+
+        <!-- Contenido dinámico -->
+        <div class="banner_section layout_padding">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
-            </footer>
         </div>
+
+        <!-- Footer -->
+<!-- Footer -->
+<div class="footer_section layout_padding">
+    <div class="container">
+        <div class="input_btn_main">
+            <input type="text" class="mail_text" placeholder="Enter your email">
+            <div class="subscribe_bt"><a href="#">Subscribe</a></div>
+        </div>
+        <div class="location_main">
+            <div class="call_text"><img src="~/Content/Images/call-icon.png"></div>
+            <div class="call_text"><a href="#">Call +01 1234567890</a></div>
+            <div class="call_text"><img src="~/Content/Images/mail-icon.png"></div>
+            <div class="call_text"><a href="#">demo@gmail.com</a></div>
+        </div>
+        <div class="social_icon">
+            <ul>
+                <li><a href="#"><img src="~/Content/Images/fb-icon.png"></a></li>
+                <li><a href="#"><img src="~/Content/Images/twitter-icon.png"></a></li>
+                <li><a href="#"><img src="~/Content/Images/linkedin-icon.png"></a></li>
+                <li><a href="#"><img src="~/Content/Images/instagram-icon.png"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Copyright -->
+<div class="copyright_section">
+    <div class="container">
+        <p class="copyright_text">2025 All Rights Reserved. Design by <a href="https://html.design">Free HTML Templates</a>, Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
+    </div>
+</div>
+
+
     </form>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-    </asp:PlaceHolder>
+
+    <!-- Scripts -->
+<!-- Scripts -->
+<script src="~/Scripts/js/jquery.min.js"></script>
+<script src="~/Scripts/js/popper.min.js"></script>
+<script src="~/Scripts/js/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/js/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/js/plugin.js"></script>
+<script src="~/Scripts/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="~/Scripts/js/custom.js"></script>
+<script src="~/Scripts/js/owl.carousel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
 </body>
 </html>
