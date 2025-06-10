@@ -54,7 +54,7 @@
 
         <div class="banner_section layout_padding">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                sdfgdsfgdfsgdsfg
+
             </asp:ContentPlaceHolder>
         </div>
 
