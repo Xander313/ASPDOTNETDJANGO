@@ -1,23 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Mantenimieto.aspx.cs" Inherits="ejercicio5ASPDOTNET.Mantenimieto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-auto d-flex justify-content-center align-items-center">
-            <h2>MANTENIMIENTOS REGISTRADOS</h2>
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-auto d-flex justify-content-center align-items-center">
+                <h2>MANTENIMIENTOS REGISTRADOS</h2>
+            </div>
         </div>
+        <hr />
     </div>
-    <hr />
-</div>
 
 <br />
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-auto d-flex justify-content-center align-items-center">
-            <asp:Button runat="server" ID="BtnCreateMantenimiento" CssClass="btn btn-success form-control-sm" Text="Registrar Mantenimiento" OnClick="BtnCreateMantenimiento_Click"/>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-auto d-flex justify-content-center align-items-center">
+                <asp:Button runat="server" ID="BtnCreateMantenimiento" CssClass="btn btn-success form-control-sm" Text="Registrar Mantenimiento" OnClick="BtnCreateMantenimiento_Click"/>
+            </div>
         </div>
     </div>
-</div>
 
 <br />
 <div class="container">
