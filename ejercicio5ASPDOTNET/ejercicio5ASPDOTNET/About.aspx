@@ -61,7 +61,7 @@
     <div class="container">
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <asp:Button runat="server" ID="BtnCrearImp" CssClass="btn btn-success form-control-sm d-inline-block" Text="Crear Impresora" Visible="true"/>
+                <asp:Button runat="server" ID="BtnCrearImp" CssClass="btn btn-success form-control-sm d-inline-block" Text="Editar Impresora" Visible="true" OnClick="BtnCrearImp_Click"/>
             </div>
         </div>
     </div>

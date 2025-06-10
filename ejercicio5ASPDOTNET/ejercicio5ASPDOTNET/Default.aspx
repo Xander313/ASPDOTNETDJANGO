@@ -42,7 +42,7 @@
                             <asp:TemplateField HeaderText="Opciones">
                                 <ItemTemplate>
                                     <asp:Button runat="server" Text="🔄 Editar" CssClass="btn form-control-sm btn-warning" ID="BtnUpdate" OnClick="BtnUpdate_Click"/>
-                                    <asp:Button runat="server" Text="❌ Eliminar" CssClass="btn form-control-sm btn-danger" ID="BtnDelete"/>
+                                    <asp:Button runat="server" Text="❌ Eliminar" CssClass="btn form-control-sm btn-danger" ID="BtnDelete" OnClick="BtnDelete_Click"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

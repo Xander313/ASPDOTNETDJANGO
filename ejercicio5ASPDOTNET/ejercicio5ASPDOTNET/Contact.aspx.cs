@@ -50,7 +50,9 @@ namespace ejercicio5ASPDOTNET
                 this.coneccion.Open();
                 cmd.ExecuteNonQuery();
                 this.coneccion.Close();
-                Response.Redirect("~/Default.aspx");
+                ScriptManager.RegisterStartupScript(this, GetType(), "alerta",
+    "Swal.fire({title: '¡Éxito!', text: 'Impresora creada correctamente.', icon: 'success'}).then(() => { window.location = 'Default.aspx'; });",
+    true);
             }
             catch (Exception ex)
             {
