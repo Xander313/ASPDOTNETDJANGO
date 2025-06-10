@@ -38,7 +38,7 @@ namespace ejercicio5ASPDOTNET
                 while (reader.Read())
                 {
                     ListItem item = new ListItem($"{reader["Marca"]} - {reader["Modelo"]}", reader["ImpresoraID"].ToString());
-                    chkImpresoras.Items.Add(item);
+                    ddlImpresoras.Items.Add(item);
                 }
 
                 reader.Close();
@@ -51,6 +51,8 @@ namespace ejercicio5ASPDOTNET
         }
 
 
+
+
         protected void BtnCrearMantenimiento_Click(object sender, EventArgs e)
         {
             byte[] pdfBytes = null;
@@ -61,50 +63,43 @@ namespace ejercicio5ASPDOTNET
                 pdfBytes = FileUploadPDF.FileBytes;
             }
 
-            // Recorrer todas las impresoras seleccionadas en el CheckBoxList
-            foreach (ListItem item in chkImpresoras.Items)
+            int impresoraID = Convert.ToInt32(ddlImpresoras.SelectedValue);
+
+            SqlCommand cmd = new SqlCommand("AgregarMantenimiento", this.coneccion);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ImpresoraID", SqlDbType.Int).Value = impresoraID;
+            cmd.Parameters.Add("@FechaMantenimiento", SqlDbType.Date).Value = Convert.ToDateTime(txbFechaMantenimiento.Text);
+            cmd.Parameters.Add("@Tecnico", SqlDbType.NVarChar).Value = txbTecnico.Text.Trim();
+            cmd.Parameters.Add("@Descripcion", SqlDbType.NVarChar).Value = txbDescripcion.Text.Trim();
+
+            SqlParameter paramPDF = new SqlParameter("@InformePDF", SqlDbType.VarBinary);
+            if (pdfBytes != null)
             {
-                if (item.Selected)
-                {
-                    int impresoraID = Convert.ToInt32(item.Value);
-
-                    SqlCommand cmd = new SqlCommand("AgregarMantenimiento", this.coneccion);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ImpresoraID", SqlDbType.Int).Value = impresoraID;
-                    cmd.Parameters.Add("@FechaMantenimiento", SqlDbType.Date).Value = Convert.ToDateTime(txbFechaMantenimiento.Text);
-                    cmd.Parameters.Add("@Tecnico", SqlDbType.NVarChar).Value = txbTecnico.Text.Trim();
-                    cmd.Parameters.Add("@Descripcion", SqlDbType.NVarChar).Value = txbDescripcion.Text.Trim();
-
-                    SqlParameter paramPDF = new SqlParameter("@InformePDF", SqlDbType.VarBinary);
-                    if (pdfBytes != null)
-                    {
-                        paramPDF.Value = pdfBytes;
-                    }
-                    else
-                    {
-                        paramPDF.Value = DBNull.Value;
-                    }
-                    cmd.Parameters.Add(paramPDF);
-
-
-                    try
-                    {
-                        this.coneccion.Open();
-                        cmd.ExecuteNonQuery();
-                        this.coneccion.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error al agregar mantenimiento: " + ex.Message);
-                    }
-                }
+                paramPDF.Value = pdfBytes;
             }
+            else
+            {
+                paramPDF.Value = DBNull.Value;
+            }
+            cmd.Parameters.Add(paramPDF);
 
-            // Mostrar alerta de éxito con SweetAlert2 después de registrar los mantenimientos
-            ScriptManager.RegisterStartupScript(this, GetType(), "alerta",
-                "Swal.fire({title: '¡Éxito!', text: 'Mantenimiento registrado correctamente.', icon: 'success'}).then(() => { window.location = 'Mantenimieto.aspx'; });",
-                true);
+            try
+            {
+                this.coneccion.Open();
+                cmd.ExecuteNonQuery();
+                this.coneccion.Close();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alerta",
+                    "Swal.fire({title: '¡Éxito!', text: 'Mantenimiento registrado correctamente.', icon: 'success'}).then(() => { window.location = 'Mantenimieto.aspx'; });",
+                    true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al agregar mantenimiento: " + ex.Message);
+            }
         }
+
+
 
 
 

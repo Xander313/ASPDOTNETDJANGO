@@ -11,7 +11,7 @@ namespace ejercicio5ASPDOTNET
 {
 
 
-    public partial class AgregarMantenimiento
+    public partial class EditarMantenimiento
     {
 
         /// <summary>

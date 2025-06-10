@@ -19,6 +19,20 @@ namespace ejercicio5ASPDOTNET
         {
             this.cs = ConfigurationManager.ConnectionStrings["sc"].ConnectionString;
             this.coneccion = new SqlConnection(cs);
+            if (!IsPostBack)
+            {
+                BindDataMantenimientos();
+
+                // Detectar si hay una solicitud de eliminación por query string
+                if (Request.QueryString["deleteId"] != null)
+                {
+                    int idImpresora;
+                    if (int.TryParse(Request.QueryString["deleteId"], out idImpresora))
+                    {
+                        eliminarMantenimieto(idImpresora);
+                    }
+                }
+            }
 
         }
 
@@ -60,7 +74,7 @@ namespace ejercicio5ASPDOTNET
 
 
         // Método para eliminar mantenimiento desde el servidor
-        protected void eliminarImpresora(int idImpresora)
+        protected void eliminarMantenimieto(int idImpresora)
         {
             SqlCommand cmd = new SqlCommand("EliminarImpresora", this.coneccion);
             cmd.CommandType = CommandType.StoredProcedure;

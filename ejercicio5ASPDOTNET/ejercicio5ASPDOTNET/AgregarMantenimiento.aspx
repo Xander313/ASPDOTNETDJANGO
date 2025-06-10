@@ -10,14 +10,16 @@
     <hr />
 
     <!-- Impresoras disponibles -->
-    <div class="container container-red mx-auto w-100">
-        <div class="d-flex flex-row align-items-center justify-content-center">
-            <div class="d-flex align-items-center">
-                <p class="mb-0 me-3">Seleccionar impresoras:</p>
-                <asp:CheckBoxList runat="server" ID="chkImpresoras" CssClass="form-check-inline"/>
-            </div>
+<div class="container container-red mx-auto w-100">
+    <div class="d-flex flex-row align-items-center justify-content-center">
+        <div class="d-flex align-items-center">
+            <p class="mb-0 me-3">Seleccionar impresora:</p>
+            <asp:DropDownList runat="server" ID="ddlImpresoras" CssClass="form-control" />
         </div>
     </div>
+</div>
+
+
 
     <!-- Datos del mantenimiento -->
     <div class="container container-red mx-auto w-100">
