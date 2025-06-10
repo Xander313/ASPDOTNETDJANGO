@@ -7,25 +7,25 @@
     <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css">
     
     <!-- Estilos generales -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css">
-    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/style.css">
+    <link rel="stylesheet" href="/Content/css/responsive.css">
 
     <!-- Icono -->
-    <link rel="icon" href="~/Content/images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="/Content/images/fevicon.png" type="image/gif" />
 
     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="~/Content/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/Content/css/jquery.mCustomScrollbar.min.css">
 
     <!-- FontAwesome y Google Fonts -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
 
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Content/css/owl.theme.default.min.css">
 
     <!-- Fancybox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -38,7 +38,7 @@
         <!-- Header -->
         <div class="header_section">
             <div class="container">
-                <div class="logo"><a href="~/"><img src="~/Content/Images/logo.png"></a></div>
+                <div class="logo"><a href="~/"><img src="/Content/Images/logo.png"></a></div>
                 <div class="menu_main">
                     <ul>
                         <li><a href="~/Default.aspx">Home</a></li>
@@ -50,46 +50,15 @@
                 </div>
             </div>
         </div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            <!-- Banner con carrusel -->
-            <div class="banner_section layout_padding">
-                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="container">
-                                <h1 class="banner_taital">Adventure</h1>
-                                <p class="banner_text">Explora el mundo con experiencias únicas.</p>
-                                <div class="read_bt"><a href="#">Get A Quote</a></div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container">
-                                <h1 class="banner_taital">Travel</h1>
-                                <p class="banner_text">Descubre nuevos destinos y vive aventuras inolvidables.</p>
-                                <div class="read_bt"><a href="#">Get A Quote</a></div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container">
-                                <h1 class="banner_taital">Experience</h1>
-                                <p class="banner_text">Disfruta de la mejor calidad y servicio en tus viajes.</p>
-                                <div class="read_bt"><a href="#">Get A Quote</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </asp:ContentPlaceHolder>
 
 
-        <!-- Contenido dinámico -->
         <div class="banner_section layout_padding">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                sdfgdsfgdfsgdsfg
             </asp:ContentPlaceHolder>
         </div>
 
-        <!-- Footer -->
-<!-- Footer -->
+
 <div class="footer_section layout_padding">
     <div class="container">
         <div class="input_btn_main">
@@ -97,17 +66,17 @@
             <div class="subscribe_bt"><a href="#">Subscribe</a></div>
         </div>
         <div class="location_main">
-            <div class="call_text"><img src="~/Content/Images/call-icon.png"></div>
+            <div class="call_text"><img src="/Content/Images/call-icon.png"></div>
             <div class="call_text"><a href="#">Call +01 1234567890</a></div>
-            <div class="call_text"><img src="~/Content/Images/mail-icon.png"></div>
+            <div class="call_text"><img src="/Content/Images/mail-icon.png"></div>
             <div class="call_text"><a href="#">demo@gmail.com</a></div>
         </div>
         <div class="social_icon">
             <ul>
-                <li><a href="#"><img src="~/Content/Images/fb-icon.png"></a></li>
-                <li><a href="#"><img src="~/Content/Images/twitter-icon.png"></a></li>
-                <li><a href="#"><img src="~/Content/Images/linkedin-icon.png"></a></li>
-                <li><a href="#"><img src="~/Content/Images/instagram-icon.png"></a></li>
+                <li><a href="#"><img src="/Content/Images/fb-icon.png"></a></li>
+                <li><a href="#"><img src="/Content/Images/twitter-icon.png"></a></li>
+                <li><a href="#"><img src="/Content/Images/linkedin-icon.png"></a></li>
+                <li><a href="#"><img src="/Content/Images/instagram-icon.png"></a></li>
             </ul>
         </div>
     </div>
@@ -125,14 +94,14 @@
 
     <!-- Scripts -->
 <!-- Scripts -->
-<script src="~/Scripts/js/jquery.min.js"></script>
-<script src="~/Scripts/js/popper.min.js"></script>
-<script src="~/Scripts/js/bootstrap.bundle.min.js"></script>
-<script src="~/Scripts/js/jquery-3.0.0.min.js"></script>
-<script src="~/Scripts/js/plugin.js"></script>
-<script src="~/Scripts/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="~/Scripts/js/custom.js"></script>
-<script src="~/Scripts/js/owl.carousel.js"></script>
+<script src="/Scripts/js/jquery.min.js"></script>
+<script src="/Scripts/js/popper.min.js"></script>
+<script src="/Scripts/js/bootstrap.bundle.min.js"></script>
+<script src="/Scripts/js/jquery-3.0.0.min.js"></script>
+<script src="/Scripts/js/plugin.js"></script>
+<script src="/Scripts/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/Scripts/js/custom.js"></script>
+<script src="/Scripts/js/owl.carousel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 </body>
