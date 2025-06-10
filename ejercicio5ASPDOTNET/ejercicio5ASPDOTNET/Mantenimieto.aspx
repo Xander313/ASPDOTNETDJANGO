@@ -38,10 +38,10 @@
 
                     <asp:TemplateField HeaderText="Opciones">
                         <ItemTemplate>
-                            <asp:Button runat="server" Text="🔄 Editar" CssClass="btn form-control-sm btn-warning" ID="BtnUpdateMantenimiento"/>
+                            <asp:Button runat="server" Text="🔄 Editar" CssClass="btn form-control-sm btn-warning" ID="BtnUpdateMantenimiento" OnClick="BtnUpdateMantenimiento_Click"/>
                             <asp:Button runat="server" Text="❌ Eliminar"
                                 CssClass="btn form-control-sm btn-danger"
-                                ID="BtnDeleteMantenimiento"
+                                ID="BtnDeleteMantenimiento" OnClick="BtnDeleteMantenimiento_Click"
                                 
                                 OnClientClick='<%# "return confirmarEliminacionMantenimiento(event, " + Eval("MantenimientoID") + ");" %>' />
                         </ItemTemplate>
@@ -51,10 +51,9 @@
         </div>
     </div>
 </div>
-
 <script>
     function confirmarEliminacionMantenimiento(event, idMantenimiento) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         Swal.fire({
             title: '¿Estás seguro?',
@@ -65,7 +64,7 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = 'Default.aspx?deleteMantenimientoId=' + idMantenimiento; 
+                window.location.href = 'Mantenimieto.aspx?deleteMantenimientoId=' + idMantenimiento;
             }
         });
     }

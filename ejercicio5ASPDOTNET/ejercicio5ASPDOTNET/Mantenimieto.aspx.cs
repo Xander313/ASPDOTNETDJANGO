@@ -19,22 +19,24 @@ namespace ejercicio5ASPDOTNET
         {
             this.cs = ConfigurationManager.ConnectionStrings["sc"].ConnectionString;
             this.coneccion = new SqlConnection(cs);
+
             if (!IsPostBack)
             {
                 BindDataMantenimientos();
 
-                // Detectar si hay una solicitud de eliminación por query string
-                if (Request.QueryString["deleteId"] != null)
+                // Detectar si hay una solicitud de eliminación en `Mantenimiento.aspx`
+                if (Request.QueryString["deleteMantenimientoId"] != null)
                 {
-                    int idImpresora;
-                    if (int.TryParse(Request.QueryString["deleteId"], out idImpresora))
+                    int idMantenimiento;
+                    if (int.TryParse(Request.QueryString["deleteMantenimientoId"], out idMantenimiento))
                     {
-                        eliminarMantenimieto(idImpresora);
+                        eliminarMantenimiento(idMantenimiento);
                     }
                 }
             }
-
         }
+
+
 
 
         private void BindDataMantenimientos()
@@ -74,11 +76,11 @@ namespace ejercicio5ASPDOTNET
 
 
         // Método para eliminar mantenimiento desde el servidor
-        protected void eliminarMantenimieto(int idImpresora)
+        protected void eliminarMantenimiento(int idMantenimiento)
         {
-            SqlCommand cmd = new SqlCommand("EliminarImpresora", this.coneccion);
+            SqlCommand cmd = new SqlCommand("EliminarMantenimiento", this.coneccion);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@ImpresoraID", SqlDbType.Int).Value = idImpresora;
+            cmd.Parameters.Add("@MantenimientoID", SqlDbType.Int).Value = idMantenimiento;
 
             try
             {
@@ -88,18 +90,33 @@ namespace ejercicio5ASPDOTNET
 
                 // Mostrar alerta de éxito con SweetAlert2 después de la eliminación
                 ScriptManager.RegisterStartupScript(this, GetType(), "alerta",
-                    "Swal.fire({title: '¡Éxito!', text: 'Impresora eliminada correctamente.', icon: 'success'}).then(() => { window.location = 'Default.aspx'; });",
+                    "Swal.fire({title: '¡Éxito!', text: 'Mantenimiento eliminado correctamente.', icon: 'success'}).then(() => { window.location = 'Mantenimieto.aspx'; });",
                     true);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al eliminar la impresora: " + ex.Message);
+                Console.WriteLine("Error al eliminar el mantenimiento: " + ex.Message);
             }
         }
+
 
         protected void BtnCreateMantenimiento_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/AgregarMantenimiento.aspx");
+        }
+
+        protected void BtnUpdateMantenimiento_Click(object sender, EventArgs e)
+        {
+            Button consulta = (Button)sender;
+            GridViewRow seleccionRow = (GridViewRow)consulta.NamingContainer;
+            int idMantenimiento = Convert.ToInt32(seleccionRow.Cells[0].Text);
+
+            Response.Redirect($"~/EditarMantenimiento.aspx?id={idMantenimiento}");
+        }
+
+        protected void BtnDeleteMantenimiento_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
