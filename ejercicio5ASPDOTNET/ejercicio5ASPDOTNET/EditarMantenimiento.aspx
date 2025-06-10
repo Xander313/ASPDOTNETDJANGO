@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditarMantenimiento.aspx.cs" Inherits="ejercicio5ASPDOTNET.EditarMantenimiento" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div>
-        <asp:Button runat="server" ID="BtnRegresar" CssClass="btn btn-info form-control-sm d-inline-block" Text="Regresar" />
-    </div>
+
 
     <div class="mx-auto text-center" style="width: 100%; max-width: 100%;">
         <asp:Label ID="lblTitulo" runat="server" style="font-size:30px;" class="text-center" Text="REGISTRAR MANTENIMIENTO"></asp:Label>
