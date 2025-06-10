@@ -23,10 +23,9 @@ namespace ejercicio5ASPDOTNET
         }
 
 
-        private void BindDataImpresoras()
+        private void BindDataMantenimientos()
         {
-            SqlCommand cmd = new SqlCommand("VerTodasImpresoras", this.coneccion);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Mantenimientos", this.coneccion);
 
             try
             {
@@ -36,15 +35,16 @@ namespace ejercicio5ASPDOTNET
                 sda.Fill(dt);
                 this.coneccion.Close();
 
-                // Convertir la imagen binaria en Base64
-                dt.Columns.Add("ImagenBase64", typeof(string));
+                // Crear nueva columna para almacenar el PDF en Base64
+                dt.Columns.Add("PDFBase64", typeof(string));
+
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (row["Imagen"] != DBNull.Value)
+                    if (row["InformePDF"] != DBNull.Value)
                     {
-                        byte[] imagenBytes = (byte[])row["Imagen"];
-                        string base64String = Convert.ToBase64String(imagenBytes);
-                        row["ImagenBase64"] = "data:image/png;base64," + base64String;
+                        byte[] pdfBytes = (byte[])row["InformePDF"];
+                        string base64String = Convert.ToBase64String(pdfBytes);
+                        row["PDFBase64"] = "data:application/pdf;base64," + base64String;
                     }
                 }
 
@@ -53,9 +53,10 @@ namespace ejercicio5ASPDOTNET
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en BindDataImpresoras: " + ex.Message);
+                Console.WriteLine("Error en BindDataMantenimientos: " + ex.Message);
             }
         }
+
 
 
         // Método para eliminar mantenimiento desde el servidor
@@ -80,6 +81,11 @@ namespace ejercicio5ASPDOTNET
             {
                 Console.WriteLine("Error al eliminar la impresora: " + ex.Message);
             }
+        }
+
+        protected void BtnCreateMantenimiento_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AgregarMantenimiento.aspx");
         }
     }
 

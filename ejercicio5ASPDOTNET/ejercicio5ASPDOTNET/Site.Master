@@ -45,8 +45,8 @@
                 <div class="logo"><a href="~/"><img src="/Content/Images/logo.png"></a></div>
                 <div class="menu_main">
                     <ul>
-                        <li><a href="~/Default.aspx">Home</a></li>
-                        <li><a href="~/About.aspx">About</a></li>
+                        <li><a href="/Default.aspx">Home</a></li>
+                        <li><a href="/Mantenimieto.aspx">About</a></li>
                         <li><a href="~/Services.aspx">Services</a></li>
                         <li><a href="~/Blog.aspx">Blog</a></li>
                         <li><a href="~/Contact.aspx">Contact</a></li>

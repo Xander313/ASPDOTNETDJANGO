@@ -30,18 +30,19 @@
                     <asp:BoundField DataField="FechaMantenimiento" HeaderText="Fecha" ItemStyle-CssClass="text-center" />
                     <asp:BoundField DataField="Tecnico" HeaderText="Técnico Responsable" ItemStyle-CssClass="text-center" />
                     <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ItemStyle-CssClass="text-center" />
-                    <asp:TemplateField HeaderText="Informe">
-                        <ItemTemplate>
-                            <asp:HyperLink runat="server" NavigateUrl='<%# "InformeHandler.ashx?id=" + Eval("MantenimientoID") %>' Text="📄 Descargar PDF" CssClass="btn btn-sm btn-primary"/>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+<asp:TemplateField HeaderText="Informe">
+    <ItemTemplate>
+        <iframe src='<%# Eval("PDFBase64") %>' width="150" height="200"></iframe>
+    </ItemTemplate>
+</asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Opciones">
                         <ItemTemplate>
-                            <asp:Button runat="server" Text="🔄 Editar" CssClass="btn form-control-sm btn-warning" ID="BtnUpdateMantenimiento" OnClick="BtnUpdateMantenimiento_Click"/>
+                            <asp:Button runat="server" Text="🔄 Editar" CssClass="btn form-control-sm btn-warning" ID="BtnUpdateMantenimiento"/>
                             <asp:Button runat="server" Text="❌ Eliminar"
                                 CssClass="btn form-control-sm btn-danger"
                                 ID="BtnDeleteMantenimiento"
-                                OnClick="BtnDeleteMantenimiento_Click"
+                                
                                 OnClientClick='<%# "return confirmarEliminacionMantenimiento(event, " + Eval("MantenimientoID") + ");" %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
