@@ -1,0 +1,104 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<br>
+<div class="row">
+  <div class="col-md-3"></div>
+
+  <div class="col-md-6 bg-light" style="border: 1px solid black; border-radius: 15px;">
+    <br>
+    <h1 class="text-center">Editar Impresora</h1>
+
+    <form action="/procesarEdicionImpresora/{{ impresoraEditar.id }}" 
+          id="frm_editar_impresora" 
+          enctype="multipart/form-data" 
+          method="post">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{ impresoraEditar.id }}">
+
+      <label><b>Modelo:</b></label>
+      <input class="form-control" type="text" name="modelo" id="modelo" value="{{ impresoraEditar.modelo }}">
+      <br>
+
+      <label><b>Marca:</b></label>
+      <input class="form-control" type="text" name="marca" id="marca" value="{{ impresoraEditar.marca }}">
+      <br>
+
+      <label style="font-weight: bold;">Fecha de Adquisicion:</label>
+      <input class="form-control" type="date" name="fecha_adquisicion" id="fecha_adquisicion" value="{{ impresoraEditar.fecha_adquisicion }}">
+            <br><br><br>
+
+      <label><b>Ubicación:</b></label>
+      <input class="form-control" type="text" name="ubicacion" id="ubicacion" value="{{ impresoraEditar.ubicacion }}">
+      <br>
+
+      <label><b>Imagen:</b></label>
+      <input class="form-control" type="file" name="imagen" id="imagen">
+      <br>
+      {% if impresoraEditar.imagen %}
+        <p>Imagen actual:</p>
+        <img src="{{ impresoraEditar.imagen.url }}" alt="Imagen actual" style="max-width: 150px; border: 1px solid #ccc;">
+      {% else %}
+        <p>No hay imagen cargada actualmente.</p>
+      {% endif %}
+      <br><br>
+
+      <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
+      <a class="btn btn-outline-danger" href="/">Cancelar</a>
+      <br><br>
+    </form>
+  </div>
+
+  <div class="col-md-3"></div>
+</div>
+
+<br><br><br>
+
+<!-- Validación con jQuery Validate -->
+<script>
+  $("#frm_editar_impresora").validate({
+    rules: {
+      "modelo": {
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+      "marca": {
+        required: true
+      },
+      "ubicacion": {
+        required: true
+      }
+    },
+    messages: {
+      "modelo": {
+        required: "Debe ingresar un modelo.",
+        minlength: "Mínimo 3 caracteres.",
+        maxlength: "Máximo 50 caracteres."
+      },
+      "marca": {
+        required: "Debe ingresar la marca."
+      },
+
+      "ubicacion": {
+        required: "Debe ingresar la ubicación."
+      }
+    }
+  });
+</script>
+
+<!-- Vista previa de archivo -->
+<script>
+  $(document).ready(function() {
+    $("#imagen").fileinput({
+      language: "es",
+      allowedFileExtensions: ["png", "jpg", "jpeg"],
+      showCaption: false,
+      dropZoneEnabled: true,
+      showClose: false,
+      maxFileCount: 1
+    });
+  });
+</script>
+
+{% endblock %}

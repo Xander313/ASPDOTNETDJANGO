@@ -1,0 +1,86 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<div class="row">
+    <div class="col-md-3"></div>
+    
+    <div class="col-md-6 bg-light" style="border: 1px solid black; border-radius: 15px;">
+        <br>
+        <h1 style="text-align: center;"><b>Nueva Impresora</b></h1>
+
+        <form action="/guardarImpresora/" id="frm_nueva_impresora" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+
+            <label style="font-weight: bold;">Modelo:</label>
+            <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Ingrese el modelo de la impresora">
+            <br><br><br>
+
+            <label style="font-weight: bold;">Marca:</label>
+            <input class="form-control" type="text" name="marca" id="marca" placeholder="Ingrese la marca de la impresora">
+            <br><br><br>
+
+            <label style="font-weight: bold;">Fecha de Adquisicion:</label>
+            <input class="form-control" type="date" name="fecha_adquisicion" id="fecha_adquisicion" >
+            <br><br><br>
+
+            <label style="font-weight: bold;">Ubicación:</label>
+            <input class="form-control" type="text" name="ubicacion" id="ubicacion" placeholder="Ej: Oficina principal">
+            <br><br><br>
+
+            <label style="font-weight: bold;">Imagen:</label>
+            <input class="form-control" type="file" name="imagen" id="imagen">
+            <br><br><br>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-outline-danger" href="/">Cancelar</a>
+        </form>
+        <br>
+    </div>
+
+    <div class="col-md-3"></div>
+</div><br><br><br>
+
+<!-- Validación con jQuery -->
+<script>
+    $("#frm_nueva_impresora").validate({
+        rules: {
+            "modelo": {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            "marca": {
+                required: true
+            },
+            "ubicacion": {
+                required: true
+            }
+        },
+        messages: {
+            "modelo": {
+                required: "Debe ingresar un modelo de impresora",
+                minlength: "El modelo debe tener al menos 3 caracteres",
+                maxlength: "El modelo debe tener como máximo 50 caracteres"
+            },
+            "marca": {
+                required: "Debe ingresar una marca"
+            },
+            "ubicacion": {
+                required: "Debe ingresar la ubicación"
+            }
+        }
+    });
+</script>
+
+<!-- Plugin para vista previa de archivo -->
+<script>
+    $("#imagen").fileinput({
+        language: "es",
+        allowedFileExtensions: ["png", "jpg", "jpeg"],
+        showCaption: false,
+        dropZoneEnabled: true,
+        showClose: false
+    });
+</script>
+
+{% endblock %}

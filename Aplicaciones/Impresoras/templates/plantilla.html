@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>A World</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+ 
+    <link rel="icon" href="{% static 'plantilla/world/images/fevicon.png' %}" type="image/gif" />
+ 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+    <link rel="stylesheet" href="//cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.4/css/fileinput.min.css" integrity="sha512-yDVMONIXJPPAoULZ92Ygngsn8ZUGB4ejm6fCc6q9ZvdH8blFAOgg75XZSEaAJ5m4E/yPI1BAi5fF2axMHVuZ5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'plantilla/world/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plantilla/world/css/owl.theme.default.min.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+ 
+    <link rel="stylesheet" type="text/css" href="{% static 'plantilla/world/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plantilla/world/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'plantilla/world/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'plantilla/world/css/jquery.mCustomScrollbar.min.css' %}">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ 
+    <script src="//cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+ 
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.4/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.0/js/locales/es.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"></script>
+    
+    <script src="{% static 'plantilla/world/js/popper.min.js' %}"></script>
+    <script src="{% static 'plantilla/world/js/jquery-3.0.0.min.js' %}"></script> <script src="{% static 'plantilla/world/js/plugin.js' %}"></script>
+    
+    <script src="{% static 'plantilla/world/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'plantilla/world/js/custom.js' %}"></script>
+    <script src="{% static 'plantilla/world/js/owl.carousel.js' %}"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+ 
+ </head>
+
+<body>
+   <style>
+      .navbar {
+            background-color: rgba(52, 58, 64, 0.7) !important; /* Fondo oscuro con 70% de opacidad */
+            /* Otros estilos de tu navbar */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+         }
+
+         /* Si quieres que los submenús (dropdowns) también sean transparentes */
+         .navbar-dark .dropdown-menu {
+            background-color: rgba(52, 58, 64, 0.9) !important; /* Fondo oscuro con 90% de opacidad */
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+         }
+   </style>
+   <div class="header_section">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+               <img src="{% static 'plantilla/world/images/logo.png' %}" alt="Logo" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavPro"
+               aria-controls="navbarNavPro" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavPro">
+               <ul class="navbar-nav ms-auto"> <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/">Impresoras</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/mantenimientos/">Mantenimientos</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+   
+      <div style="height: 80px;"></div> 
+   
+      <div class="banner_section layout_padding">
+         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <h1 class="banner_taital">Man y Imp</h1>
+                     <p class="banner_text">somos expertos en reparar impresoras desde opsoletos a nuevas</p>
+                     <div class="read_bt"><a href="#">conose mas</a></div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="banner_taital">Man y Imp</h1>
+                     <p class="banner_text">Somos expertos en reparar impresoras desde opsoletos a nuevas</p>
+                     <div class="read_bt"><a href="#">conose mas</a></div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <h1 class="banner_taital">Man y Imp</h1>
+                  <p class="banner_text">Somos expertos en reparar impresoras desde opsoletos a nuevas</p>
+                  <div class="read_bt"><a href="#">conose mas</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+  
+  {% block contenido%}
+
+       {% endblock %}
+    <div class="footer_section layout_padding">
+   <div class="container">
+      
+      <div class="location_main">
+         <div class="call_text"><img src="{% static 'plantilla/world/images/call-icon.png' %}"></div>
+         <div class="call_text"><a href="#">Call +593 982642046</a></div>
+         <div class="call_text"><img src="{% static 'plantilla/world/images/mail-icon.png' %}"></div>
+         <div class="call_text"><a href="#">manteniminetoyrefaccion@gmail.com</a></div>
+      </div>
+      <div class="social_icon">
+         <ul>
+            <li><a href="#"><img src="{% static 'plantilla/world/images/fb-icon.png' %}"></a></li>
+            <li><a href="#"><img src="{% static 'plantilla/world/images/twitter-icon.png' %}"></a></li>
+            <li><a href="#"><img src="{% static 'plantilla/world/images/linkedin-icon.png' %}"></a></li>
+            <li><a href="#"><img src="{% static 'plantilla/world/images/instagram-icon.png' %}"></a></li>
+         </ul>
+      </div>
+   </div>
+</div>
+<div class="copyright_section">
+   <div class="container">
+      <p class="copyright_text">2025 creado por roldan y Aguila <a href="https://html.design">Free html
+            Templates</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
+   </div>
+</div>
+<script src="{% static 'plantilla/world/js/jquery.min.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/popper.min.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/jquery-3.0.0.min.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/plugin.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/custom.js' %}"></script>
+ <script src="{% static 'plantilla/world/js/owl.carousel.js' %}"></script>
+ <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+    {% if messages %}
+        {% for mensaje in messages %}
+          <script>
+            // Swal.fire("SweetAlert2 is working!");
+            Swal.fire({
+              title: "CONFIRMACION",
+              text: "{{mensaje}}",
+              icon: "success"
+            });
+          </script>
+        {% endfor %}
+    {% endif %}
+
+    <style>
+      .error{
+        color:red;
+        font-weight: bold;
+      }
+      .form-control.error{
+        border:1px solid red;
+      }
+    </style>
+
+</body>
+</html>

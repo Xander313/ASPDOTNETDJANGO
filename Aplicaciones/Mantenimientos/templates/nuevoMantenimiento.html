@@ -1,0 +1,98 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6 bg-light" style="border: 1px solid black; border-radius: 15px;">
+        <br>
+        <h1 style="text-align: center;"><b>Nuevo Mantenimiento</b></h1>
+
+        <form action="/mantenimientos/guardarMantenimiento/" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <label style="font-weight: bold;">Impresora:</label>
+            <select class="form-control" name="impresora" id="impresora">
+                <option value="">Seleccione una impresora</option>
+                {% for impresora in impresoras %}
+                    <option value="{{ impresora.id }}">{{ impresora.marca }} - {{ impresora.modelo }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+
+            <label style="font-weight: bold;">Fecha de Mantenimiento:</label>
+            <input class="form-control" type="date" name="fecha_mantenimiento" id="fecha_mantenimiento">
+            <br><br>
+
+            <label style="font-weight: bold;">Técnico:</label>
+            <input class="form-control" type="text" name="tecnico" id="tecnico" placeholder="Nombre del técnico">
+            <br><br>
+
+            <label style="font-weight: bold;">Descripción:</label>
+            <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Detalles del mantenimiento" rows="4"></textarea>
+            <br><br>
+
+            <label style="font-weight: bold;">Informe PDF:</label>
+            <input class="form-control" type="file" name="informe_pdf" id="informe_pdf">
+            <br><br>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-outline-danger" href="/mantenimientos/">Cancelar</a>
+        </form>
+        <br>
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
+<br><br><br>
+
+<!-- Validación con jQuery -->
+<script>
+    $("#frm_nuevo_mantenimiento").validate({
+        rules: {
+            "impresora": {
+                required: true
+            },
+            "fecha_mantenimiento": {
+                required: true
+            },
+            "tecnico": {
+                required: true,
+                minlength: 3
+            },
+            "descripcion": {
+                required: true,
+                minlength: 5
+            }
+        },
+        messages: {
+            "impresora": {
+                required: "Seleccione una impresora"
+            },
+            "fecha_mantenimiento": {
+                required: "Ingrese la fecha"
+            },
+            "tecnico": {
+                required: "Ingrese el nombre del técnico",
+                minlength: "Debe tener al menos 3 caracteres"
+            },
+            "descripcion": {
+                required: "Ingrese la descripción",
+                minlength: "Debe tener al menos 5 caracteres"
+            }
+        }
+    });
+</script>
+
+<!-- Plugin para cargar PDF -->
+<script>
+    $("#informe_pdf").fileinput({
+        language: "es",
+        allowedFileExtensions: ["pdf"],
+        showCaption: false,
+        dropZoneEnabled: true,
+        showClose: false
+    });
+</script>
+{% endblock %}

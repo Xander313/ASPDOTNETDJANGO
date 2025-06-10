@@ -1,0 +1,96 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<h1><b>Listado de mantenimientos</b></h1>
+<hr>
+<br>
+<div class="text-end">
+    <a href="nuevoMantenimiento" class="btn btn-primary bg-dark">Registrar mantenimiento</a>
+</div>
+<br><br>
+
+<table class="table table-bordered table-striped table-hover" id="tbl_mantenimientos">
+    <thead class="bg-dark" style="color: white;">
+        <tr>
+            <th>ID</th>
+            <th>Impresora</th>
+            <th>Fecha de mantenimiento</th>
+            <th>Técnico</th>
+            <th>Descripción</th>
+            <th>Informe PDF</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mantenimiento in mantenimientos %}
+            <tr>
+                <td>{{ mantenimiento.id }}</td>
+                <td>{{ mantenimiento.impresora.modelo }} - {{ mantenimiento.impresora.marca }}</td>
+                <td>{{ mantenimiento.fecha_mantenimiento }}</td>
+                <td>{{ mantenimiento.tecnico }}</td>
+                <td>{{ mantenimiento.descripcion }}</td>
+                <!-- pdf -->
+                <td>
+                    {% if mantenimiento.informe_pdf %}
+                        <iframe src="{{mantenimiento.informe_pdf.url}}" width="250px" height="200px" frameborder></iframe>     
+                    {% else %}
+                        Sin archivo
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="editarMantenimiento/{{ mantenimiento.id }}" class="btn btn-outline-warning">
+                        <i class="fa fa-pen"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-danger" onclick="confirmarEliminacion('{{ mantenimiento.id }}')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+    function confirmarEliminacion(id) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡No podrás revertir esta acción!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/mantenimientos/eliminarMantenimiento/" + id;
+            } else {
+                Swal.fire({
+                    title: "Cancelado",
+                    text: "La acción fue cancelada.",
+                    icon: "info",
+                    confirmButtonText: "OK"
+                });
+            }
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#tbl_mantenimientos').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+
+{% endblock %}
+
