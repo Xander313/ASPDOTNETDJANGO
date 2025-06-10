@@ -24,7 +24,9 @@
         </div>
 
         <br />
+
         <div class="container">
+
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <asp:GridView runat="server" ID="DGVImpresoras" CssClass="table table-borderless table-hover text-center" AutoGenerateColumns="False">
@@ -58,9 +60,10 @@
         </div>
 
 
+
 <script>
     function confirmarEliminacion(event, idImpresora) {
-        event.preventDefault(); // 🔥 Detener el postback inmediato
+        event.preventDefault(); 
 
         Swal.fire({
             title: '¿Estás seguro?',

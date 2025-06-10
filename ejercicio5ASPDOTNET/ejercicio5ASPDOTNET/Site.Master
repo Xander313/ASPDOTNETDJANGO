@@ -26,6 +26,10 @@
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="/Content/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/Content/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -35,9 +39,17 @@
 
     <!-- Fancybox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+
+  
+
 </head>
 
+
 <body>
+
+
+
     <form runat="server">
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
@@ -107,6 +119,27 @@
 <script src="/Scripts/js/custom.js"></script>
 <script src="/Scripts/js/owl.carousel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+     <style>
+.error {
+    color: #ff0000; /* Color rojo para resaltar */
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+input.error, select.error {
+    border: 2px solid #ff0000; /* Resalta el campo con borde rojo */
+    background-color: #ffe5e5; /* Fondo claro para indicar error */
+}
+
+input.valid {
+    border: 2px solid #28a745; /* Verde cuando es válido */
+    background-color: #e5ffe5; /* Fondo verde cuando es correcto */
+}
+
+    </style>
+
 
 
 

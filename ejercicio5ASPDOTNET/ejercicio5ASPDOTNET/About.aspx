@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="ejercicio5ASPDOTNET.About" %>
 
+
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <asp:Button runat="server" ID="BtnRegresar" CssClass="btn btn-info form-control-sm d-inline-block" Text="Regresar" />
@@ -65,4 +68,9 @@
             </div>
         </div>
     </div>
+
+
+    
+
+
 </asp:Content>
