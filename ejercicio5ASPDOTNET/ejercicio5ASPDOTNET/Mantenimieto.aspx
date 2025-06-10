@@ -30,11 +30,11 @@
                     <asp:BoundField DataField="FechaMantenimiento" HeaderText="Fecha" ItemStyle-CssClass="text-center" />
                     <asp:BoundField DataField="Tecnico" HeaderText="Técnico Responsable" ItemStyle-CssClass="text-center" />
                     <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ItemStyle-CssClass="text-center" />
-<asp:TemplateField HeaderText="Informe">
-    <ItemTemplate>
-        <iframe src='<%# Eval("PDFBase64") %>' width="150" height="200"></iframe>
-    </ItemTemplate>
-</asp:TemplateField>
+                    <asp:TemplateField HeaderText="Informe">
+                        <ItemTemplate>
+                            <iframe src='<%# Eval("PDFBase64") %>' width="150" height="200"></iframe>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Opciones">
                         <ItemTemplate>
