@@ -42,7 +42,13 @@
                             <asp:TemplateField HeaderText="Opciones">
                                 <ItemTemplate>
                                     <asp:Button runat="server" Text="🔄 Editar" CssClass="btn form-control-sm btn-warning" ID="BtnUpdate" OnClick="BtnUpdate_Click"/>
-                                    <asp:Button runat="server" Text="❌ Eliminar" CssClass="btn form-control-sm btn-danger" ID="BtnDelete" OnClick="BtnDelete_Click"/>
+<asp:Button runat="server" Text="❌ Eliminar"
+    CssClass="btn form-control-sm btn-danger"
+    ID="BtnDelete"
+    OnClick="BtnDelete_Click"
+    OnClientClick='<%# "return confirmarEliminacion(event, " + Eval("ImpresoraID") + ");" %>' />
+
+
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -50,4 +56,27 @@
                 </div>
             </div>
         </div>
+
+
+<script>
+    function confirmarEliminacion(event, idImpresora) {
+        event.preventDefault(); // 🔥 Detener el postback inmediato
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede revertir.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'Default.aspx?deleteId=' + idImpresora; // 🔥 Redirigir con el ID
+            }
+        });
+    }
+</script>
+
+
+
 </asp:Content>
