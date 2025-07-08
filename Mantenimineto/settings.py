@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Aplicaciones.Mantenimientos',
     'Aplicaciones.Impresoras',
+    'bot',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,9 @@ MEDIA_ROOT=(os.path.join(BASE_DIR,'Mantenimineto/media/'))
 
 
 X_FRAME_OPTIONS= 'SAMEORIGIN'
+
+
+
+# settings.py
+TELEGRAM_BOT_TOKEN = "7992982183:AAH2kYLicJ5zM6NrAYExc_IowviLRJ723zo"  # Usa variables de entorno en producción!
+TELEGRAM_CHAT_ID = "7007311093"
