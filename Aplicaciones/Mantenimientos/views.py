@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Mantenimiento
 from Aplicaciones.Impresoras.models import Impresora 
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+
+
 # Listado de mantenimientos
 def inicioMantenimientos(request):
     mantenimientos = Mantenimiento.objects.select_related('impresora').all()
@@ -76,3 +83,47 @@ def procesarEdicionMantenimiento(request, id):
         return redirect('/mantenimientos/')
     else:
         return redirect('/mantenimientos/')
+
+
+
+@csrf_exempt
+def enviar_pdf_telegram(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            
+            if not all(key in data for key in ['pdf_url', 'chat_id', 'mensaje']):
+                return JsonResponse({'status': 'error', 'message': 'Datos incompletos'}, status=400)
+            
+            token = "7992982183:AAH2kYLicJ5zM6NrAYExc_IowviLRJ723zo"
+            
+            requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                data={
+                    'chat_id': data['chat_id'],
+                    'text': data['mensaje'],
+                    'parse_mode': 'Markdown'
+                }
+            )
+            
+            if data['pdf_url']:
+                from django.conf import settings
+                pdf_full_url = request.build_absolute_uri(data['pdf_url'])
+                print("URL completa del PDF:", pdf_full_url)
+                
+                pdf_response = requests.get(pdf_full_url, stream=True)
+                pdf_response.raise_for_status()
+                
+                files = {'document': ('reporte.pdf', pdf_response.content)}
+                requests.post(
+                    f"https://api.telegram.org/bot{token}/sendDocument",
+                    data={'chat_id': data['chat_id']},
+                    files=files
+                )
+            
+            return JsonResponse({'status': 'success'})
+            
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    
+    return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)

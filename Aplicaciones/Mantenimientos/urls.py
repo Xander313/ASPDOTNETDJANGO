@@ -8,4 +8,6 @@ urlpatterns=[
     path('editarMantenimiento/<id>/', views.editarMantenimiento),
     path('procesarEdicionMantenimiento/<id>/', views.procesarEdicionMantenimiento),
     path('eliminarMantenimiento/<id>/', views.eliminarMantenimiento),
+    path('enviarPDF/', views.enviar_pdf_telegram), 
+
 ]

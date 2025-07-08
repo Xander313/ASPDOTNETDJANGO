@@ -1,5 +1,127 @@
 {% extends './plantilla.html' %}
 {% block contenido %}
+
+<!-- SDK de Telegram -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<!-- Botón para abrir el bot en Telegram -->
+<button id="telegramBotButton" class="boton-telegram">💬 Chat con el Bot</button>
+
+<!-- Widget flotante -->
+<button id="telegramToggle" class="boton-flotante">🤖</button>
+<div id="telegramWidget">
+    <iframe 
+        src="https://web.telegram.org/k/#@MedidorAguaCloudBot" 
+        width="100%" 
+        height="100%" 
+        frameborder="0"
+    ></iframe>
+</div>
+
+<!-- Formulario para enviar mensajes (opcional) -->
+<div class="formulario-chat">
+    <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
+    <button id="sendButton">Enviar</button>
+</div>
+
+<style>
+    /* Estilos para el botón de Telegram */
+    .boton-telegram {
+        padding: 10px 15px;
+        background: #0088cc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px 0;
+    }
+    
+    /* Estilos para el widget flotante */
+    #telegramWidget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        height: 500px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        background: white;
+        z-index: 1000;
+        display: none;
+    }
+    
+    .boton-flotante {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #0088cc;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    /* Estilos para el formulario de chat */
+    .formulario-chat {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #f9f9f9;
+    }
+    
+    .formulario-chat input {
+        padding: 8px;
+        width: 70%;
+        margin-right: 5px;
+    }
+    
+    .formulario-chat button {
+        padding: 8px 15px;
+    }
+</style>
+
+<script>
+    // Abrir bot en Telegram
+    document.getElementById("telegramBotButton").addEventListener("click", function() {
+        Telegram.WebApp.openTelegramLink("https://t.me/MedidorAguaCloudBot");
+    });
+    
+    // Mostrar/ocultar widget flotante
+    document.getElementById("telegramToggle").addEventListener("click", function() {
+        const widget = document.getElementById("telegramWidget");
+        widget.style.display = widget.style.display === "none" ? "block" : "none";
+    });
+    
+    // Enviar mensajes al bot (opcional)
+    const token = "7992982183:AAH2kYLicJ5zM6NrAYExc_IowviLRJ723zo";
+    const chatId = "7007311093";
+    
+    function sendMessage(text) {
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`)
+            .then(response => response.json());
+    }
+    
+    document.getElementById("sendButton").addEventListener("click", function() {
+        const message = document.getElementById("messageInput").value;
+        if(message) {
+            sendMessage(message);
+            document.getElementById("messageInput").value = "";
+        }
+    });
+</script>
+
+<br>
+<h1><b>Lista</b></h1>
+
+
+
+
 <br>
 <h1><b>Listado de mantenimientos</b></h1>
 <hr>
@@ -44,7 +166,19 @@
                     <a href="#" class="btn btn-outline-danger" onclick="confirmarEliminacion('{{ mantenimiento.id }}')">
                         <i class="fa fa-trash"></i>
                     </a>
+                    <button class="btn btn-outline-primary" onclick="enviarReporteTelegram(
+                        '{{ mantenimiento.id }}',
+                        '{{ mantenimiento.impresora.modelo|escapejs }} - {{ mantenimiento.impresora.marca|escapejs }}',
+                        '{{ mantenimiento.fecha_mantenimiento|escapejs }}',
+                        '{{ mantenimiento.tecnico|escapejs }}',
+                        '{{ mantenimiento.descripcion|escapejs }}',
+                        '{% if mantenimiento.informe_pdf %}{{ mantenimiento.informe_pdf.url }}{% else %}{% endif %}'
+                    )">
+                        <i class="fab fa-telegram"></i> Enviar
+                    </button>
                 </td>
+
+
             </tr>
         {% endfor %}
     </tbody>
@@ -90,6 +224,54 @@
             ]
         });
     });
+</script>
+
+
+
+<script>
+    async function enviarReporteTelegram(id, impresora, fecha, tecnico, descripcion, pdfUrl) {
+        // Formatear el mensaje
+        const mensaje = `📝 *Reporte de Mantenimiento* 📝\n\n` +
+                       `🆔 ID: ${id}\n` +
+                       `🖨️ Impresora: ${impresora}\n` +
+                       `📅 Fecha: ${fecha}\n` +
+                       `👨‍🔧 Técnico: ${tecnico}\n` +
+                       `📋 Descripción: ${descripcion}`;
+        
+        try {
+            const response = await fetch('/mantenimientos/enviarPDF/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    pdf_url: pdfUrl,
+                    chat_id: "7007311093",
+                    mensaje: mensaje
+                })
+            });
+            
+            const result = await response.json();
+            
+            if(result.status === 'success') {
+                Swal.fire({
+                    title: "¡Éxito!",
+                    text: "Reporte enviado a Telegram",
+                    icon: "success"
+                });
+            } else {
+                throw new Error(result.message || 'Error al enviar');
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: "No se pudo enviar el reporte: " + error.message,
+                icon: "error"
+            });
+            console.error("Error:", error);
+        }
+    }
 </script>
 
 {% endblock %}
